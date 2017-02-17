@@ -8,6 +8,14 @@ mechanical walking mechanisms designed in Processing, exported to STL for 3D Pri
 
 <h2>Class: LinkHinge</h2>
 
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/LinkHinge1.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/LinkHinge2.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/LinkHinge3.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/LinkHinge4.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/LinkHinge5.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/LinkHinge6.png"/>
+
+
 <p>The first class I designed in this project is the class which deals with the geometry of something I'm calling a "LinkHinge", this is the end piece of a link that allows a link to rotate around a joint.  As you can see in the images above, the LinkHinge has a rounded edge with a hole, and a square end that connects to the rest or the link.  The dimensions of each feature on the LinkHinge is specified by the variables:</p><p><strong>  float innerRad = 0.05;<br>
   float outerRad = 0.08;<br>
   float hingeWidth = 0.08;</strong></p><p>whose units are in inches.  The number of points defined around the circular portion of the LinkHinge is given by the following variable:</p><p>  <strong> int resolution = 64;</strong></p><p>This number may be increased to increase the density of points on the mesh, making the rounded features less faceted, or it may be decreased to decrease the overall size of the resulting STL file.  This number must always be divisible by four.</p>
@@ -207,6 +215,14 @@ The next functions in this class return an ArrayList containing the vertices tha
 
 <h2>Class: Link</h2>
 
+
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Link1.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Link2.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Link3.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Link4.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Link5.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Link6.png"/>
+
 <p>The Link class creates and stores a list of four LinkHinge objects and connects them to each other to form a complete, watertight mesh from specified starting an ending points.  The class receives the following parameters when it is initialized:</p><p><strong>   the <a href="http://processing.org/reference/PVector.html">PVectors</a> (positions) of its endpoints<br>
    the width of its endpoints<br>
    whether it should draw a crossbar at each end </strong>(fig 1, 3, 4 show varying combinations of crossbar possibilities, the cross beams are there to provide extra support to the linkage, but can be easily removed if they inhibit movement)</p>
@@ -327,6 +343,14 @@ You can see the triangular geometry of the LinkHinges and the Link in figs 5 and
 
 <h2>Class: JointSection</h2>
 
+
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/JointSection1.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/JointSection2.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/JointSection3.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/JointSection4.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/JointSection5.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/JointSection6.png"/>
+
 <p>I'm calling the parts that the Links rotate around the "Joints".  Each Joint is made up of many unit pieces called "JointSections".  A JointSection provides the place for a Link to connect.  The geometry of one JointSection is given in figs 1 and 2, and its connection with a Link is shown in figs 5 and 6.</p><p>Through some experimentation, I've found that a good amount of spacing between moving elements in an assembly is 0.01".  This is enough space for the 3D printer to print them as two separate, freely moving objects without leaving too much play in the connection:</p><p><strong>  float spacing = 0.01;</strong></p><p>The inner and outer radii of the JointSection (called jointRad and jointBevelRad respectively), are defined as:</p><p><strong>  float jointRad = innerRad-spacing;<br>
   float jointBevelRad = outerRad;</strong></p><p>Remember, the innerRad and outerRad variables were used to set the dimensions on the LinkHinge.  This way, there is 0.01" difference between the radius of the LinkHinge hole and the JointSection that fits inside it.  The width of each of the wider regions on the Joint (the jointBevel), is given by the following:</p><p><strong>  float jointBevelWidth = 0.01;</strong></p><p>The next variable was created out of convenience, it defines the width of the region with radius = jointRad, the skinner section of each JointSection.  This variable ensures that there is always 0.01" spacing between the sides of each LinkHinge and the nearest jointBevel.</p><p><strong>  float jointWidth = hingeWidth+2*spacing;</strong></p>
 Each JointSection is initialized with a list of vertices that it should connect to, and a position PVector.  The JointSections will always line up along the x-axis and they have radial symmetry, so we don't need to think about their rotational position.  In initialization, the JointSection calculates an ArrayList of five UVertexLists that it will eventually link together in the getGeometry() function.<br>
@@ -406,6 +430,13 @@ The JointSection is also responsible for passing the last UVertexList in its vli
 
 
 <h2>Class: Joint</h2>
+
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Joint1.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Joint2.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Joint3.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Joint4.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Joint5.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Joint6.png"/>
 
 The Joint class strings several JointSections together into one pin joint.<br>
 <pre>//Joint class
@@ -492,5 +523,9 @@ class Joint{
 
 
 <h2>Class: Leg</h2>
+
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Leg1.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Leg2.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Leg3.png"/>
 
 <p>Finally, the Leg class constructs a complete leg from Links and Joints.  This part is a little tricky because you have to be careful that no part of the Leg will collide with itself as it moves through a locomotion cycle.  This is a problem I still need to solve - my code will not take any arbitrary planar linkage design and solve for it's 3D structure, but I hope to eventually get there.  </p><p>It's actually an intersting <a href="http://en.wikipedia.org/wiki/Edge_coloring">edge coloring problem</a>, where you assign a different z offset to links that have the potential to collide.  The trick is to find the minimum number of z positions needed, in order to keep the linkage as planar as possible.</p><p>Again, the most recent version of this code is up on <a href="https://github.com/amandaghassaei/Genetic-Walkers">Github</a>.  I checked it and it should generate a leg STL when run.</p>
