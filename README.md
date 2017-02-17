@@ -5,6 +5,7 @@ mechanical walking mechanisms designed in Processing, exported to STL for 3D Pri
 
 <p>A very long time ago, I started writing an Instructable about generating a 3D printable linkage from processing.  Eventually that project grew in other directions and I abandoned all my Processing code.  I already wrote a lot about it and since it might be useful to someone, so I've included some explanation here. </p><p>The next several steps will describe the Processing sketch used to transform the information describing the geometry of a leg into a 3D printable model of the leg.  This is still very much a work in progress, but it is a nice example of how to use the <a href="https://github.com/mariuswatz/modelbuilder">Modelbuilder library</a>.</p>
 
+
 ##Class: LinkHinge##
 
 <p>The first class I designed in this project is the class which deals with the geometry of something I'm calling a "LinkHinge", this is the end piece of a link that allows a link to rotate around a joint.  As you can see in the images above, the LinkHinge has a rounded edge with a hole, and a square end that connects to the rest or the link.  The dimensions of each feature on the LinkHinge is specified by the variables:</p><p><strong>  float innerRad = 0.05;<br>
@@ -203,6 +204,7 @@ The next functions in this class return an ArrayList containing the vertices tha
   }
 }</pre>
 
+
 ##Class: Link##
 
 <p>The Link class creates and stores a list of four LinkHinge objects and connects them to each other to form a complete, watertight mesh from specified starting an ending points.  The class receives the following parameters when it is initialized:</p><p><strong>   the <a href="http://processing.org/reference/PVector.html">PVectors</a> (positions) of its endpoints<br>
@@ -322,6 +324,7 @@ You can see the triangular geometry of the LinkHinges and the Link in figs 5 and
 }
 </pre>
 
+
 ##Class: JointSection##
 
 <p>I'm calling the parts that the Links rotate around the "Joints".  Each Joint is made up of many unit pieces called "JointSections".  A JointSection provides the place for a Link to connect.  The geometry of one JointSection is given in figs 1 and 2, and its connection with a Link is shown in figs 5 and 6.</p><p>Through some experimentation, I've found that a good amount of spacing between moving elements in an assembly is 0.01".  This is enough space for the 3D printer to print them as two separate, freely moving objects without leaving too much play in the connection:</p><p><strong>  float spacing = 0.01;</strong></p><p>The inner and outer radii of the JointSection (called jointRad and jointBevelRad respectively), are defined as:</p><p><strong>  float jointRad = innerRad-spacing;<br>
@@ -400,6 +403,7 @@ The JointSection is also responsible for passing the last UVertexList in its vli
     return vlists.get(vlists.size()-1);//return last element in vlists
   }
 }</pre>
+
 
 ##Class: Joint##
 
@@ -485,6 +489,7 @@ class Joint{
   }
 }
 </pre>
+
 
 ##Class: Leg##
 
