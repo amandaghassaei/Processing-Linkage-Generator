@@ -33,7 +33,7 @@ class LinkHinge {
     }
     hingeAngle = _hingeAngle;//angle of hinge in yz plane
     calculateGeometry(hingePos);
-  }&lt;/strong&gt;</pre><p>
+  }</pre><p>
 The LinkHinge class is initialized with an <a href="http://processing.org/reference/ArrayList.html">ArrayList</a> of 16 <a href="http://workshop.evolutionzone.com/code/modelbuilder/javadoc/unlekker/modelbuilder/UVertexList.html">UVertexList</a>s, these lists will store all the vertices of the LinkHinge, and will be used to create the geometry of the part.  Two parameters are passed in when an instance of the class is created, "hingePos" and "hingeAngle".  hingePos is a 3 dimensional coordinate (<a href="http://processing.org/reference/PVector.html">PVector</a>) which sets the position of the hinge in space.  hingeAngle is the angle of rotation of the hinge in the yz plane (the direction of the hole cutout in the hinge is always perpendicular to the yz plane, all joints run parallel to the x axis).</p>
 In all of the classes that deal directly with generating the geometry of the STL, I've broken up calculating the vertices and creating the geometry of the shape from the vertices into two functions: "calculateGeometry" and "getGeometry".  In calculateGeomerty, the vertices are calculated for two distinct sections of the LinkHinge, the outer curved portion (figs 1 and 2) and the square portion that attaches to the rest of the link (figs 3 and 4).<br>
 <pre>&lt;strong&gt;
@@ -83,7 +83,7 @@ In all of the classes that deal directly with generating the geometry of the STL
     vlists.get(11).add(vlists.get(3).last());
     vlists.get(11).add(vlists.get(15).first());
   }
-&lt;/strong&gt;</pre>
+</pre>
 <br>
 When calculating the geometry, I'm creating a list of triangles and storing them in an instance of <a href="http://workshop.evolutionzone.com/code/modelbuilder/javadoc/unlekker/modelbuilder/UGeometry.html">UGeometry</a>.  These triangles are adjacent to each other and will eventually form a watertight mesh when they are joined with the rest of the model.  The triangles are arranged differently in different sections of the hinge, you can see exactly how the triangles are arranged across the LinkHinge in figs 5 and 6.  I used a combination of the <a href="http://workshop.evolutionzone.com/code/modelbuilder/javadoc/unlekker/modelbuilder/UGeometry.html#quadStrip%28unlekker.modelbuilder.UVertexList,%20unlekker.modelbuilder.UVertexList%29">quadStrip()</a> and <a href="http://workshop.evolutionzone.com/code/modelbuilder/javadoc/unlekker/modelbuilder/UGeometry.html#triangleFan%28unlekker.modelbuilder.UVertexList,%20boolean%29">triangleFan()</a> functions from the modelbuilder library to build these triangles<br>
 <pre>&lt;strong&gt;
@@ -118,7 +118,7 @@ When calculating the geometry, I'm creating a list of triangles and storing them
 
     return geo;
   }
-&lt;/strong&gt;</pre>
+</pre>
 <br>
 The next functions in this class return an ArrayList containing the vertices that attach to the open end of the LinkHinge.  This ArrayList is passed into the Link class (I'll describe this class in more detail in the next step) so that the LinkHinge's can be connected to the rest of the model.  The parameters inverse and opposite dictate the order that the vertices are arranged in the ArrayList, based on the orientation of the LinkHinge with respect to the Link to which it is attached.<br>
 <pre>&lt;strong&gt;
@@ -202,5 +202,5 @@ The next functions in this class return an ArrayList containing the vertices tha
 
     return secondaryConnections;
   }
-}&lt;/strong&gt;</pre>
+}</pre>
 
