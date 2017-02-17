@@ -524,8 +524,8 @@ class Joint{
 
 <h2>Class: Leg</h2>
 
-<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Leg1.png"/>
-<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Leg2.png"/>
-<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Leg3.png"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Leg1.jpg"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Leg2.jpg"/>
+<img src="https://raw.githubusercontent.com/amandaghassaei/Processing-Linkage-Generator/master/images/Leg3.jpg"/>
 
 <p>Finally, the Leg class constructs a complete leg from Links and Joints.  This part is a little tricky because you have to be careful that no part of the Leg will collide with itself as it moves through a locomotion cycle.  This is a problem I still need to solve - my code will not take any arbitrary planar linkage design and solve for it's 3D structure, but I hope to eventually get there.  </p><p>It's actually an intersting <a href="http://en.wikipedia.org/wiki/Edge_coloring">edge coloring problem</a>, where you assign a different z offset to links that have the potential to collide.  The trick is to find the minimum number of z positions needed, in order to keep the linkage as planar as possible.</p><p>Again, the most recent version of this code is up on <a href="https://github.com/amandaghassaei/Genetic-Walkers">Github</a>.  I checked it and it should generate a leg STL when run.</p>
